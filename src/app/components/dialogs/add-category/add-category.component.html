@@ -1,0 +1,62 @@
+<h1 mat-dialog-title>{{title}}
+    <span class="material-icons close-icon" (click)="closeDialog()">
+        cancel_presentation
+    </span>
+</h1>
+<div mat-dialog-content>
+    <form name="form" enctype="multipart/form-data">
+        <div class="row">
+            <div class="sign-u col-md-6">
+                <div class="sign-up1">
+                    <h4> Name<strong class="star">*</strong> :</h4>
+                </div>
+                <div class="sign-up2">
+                    <input type="text" [value]="existingCategory!.name" class="tf-lenos" name="name" required="true"
+                        (keyup)="form.validate($event)">
+                </div>
+                <div class="clearfix"> </div>
+            </div>
+            <div class="sign-u col-md-6">
+                <div class="sign-up1">
+                    <h4>Type <strong class="star">*</strong> :</h4>
+                </div>
+                <div class="sign-up2">
+                    <select class="tf-lenos" name="type" required="true" (keyup)="form.validate($event)">
+                        <option *ngIf="existingCategory!.type!=null">{{existingCategory!.type}}</option>
+                        <option>PRODUCT</option>
+                        <option>BUSINESS</option>
+                    </select>
+                </div>
+                <div class="clearfix"> </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="sign-u col-md-6">
+                <div class="sign-up1">
+                    <h4>Image<strong class="star">*</strong> :</h4>
+                </div>
+                <div class="sign-up2">
+                    <input type="file" class="tf-lenos" name="image" required="true" (change)="form.validate($event)">
+                </div>
+                <div class="clearfix"> </div>
+            </div>
+            <div class="sign-u col-md-6">
+                <div class="sign-up1">
+                    <h4>Icon <strong class="star">*</strong> :</h4>
+                </div>
+                <div class="sign-up2">
+                    <input type="text" [value]="existingCategory!.icon" class="tf-lenos" name="icon"  required="true"
+                        (keyup)="form.validate($event)">
+                </div>
+                <div class="clearfix"> </div>
+            </div>
+        </div>
+    </form>
+</div>
+<div class="group-button dialog-buttons" mat-dialog-actions>
+        <div class="sub_home text-right">
+            <button type="button" mat-button (click)="this.addCategory()" class="btn btn-lenos btn-round">Save</button>
+            <div class="clearfix"> </div>
+        </div>
+</div>

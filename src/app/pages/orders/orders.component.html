@@ -1,0 +1,113 @@
+<app-sidebar></app-sidebar>
+<app-header></app-header>
+<div class="main-content">
+    <div id="page-wrapper">
+        <div class="main-page">
+            <div class="login-top left">
+                <h3>Orders »
+                  <span *ngIf="location!=null">
+                  {{location.description}}
+                  </span>
+
+                </h3>
+            </div>
+            <div class="tables">
+                <div class="bs-example widget-shadow" data-example-id="hoverable-table">
+                    <ng-container *ngIf="isLoading">
+                        <app-loader></app-loader>
+                    </ng-container>
+                    <ng-container *ngIf="orders!=null && !isLoading">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Transaction Id</th>
+                                    <th>Payment</th>
+                                    <th>Option</th>
+                                    <th>Amount</th>
+                                    <th>Name</th>
+                                    <th>Contact</th>
+                                    <th>Alternative</th>
+                                    <th>Created Date</th>
+                                    <th *ngIf="authenticatedUser.accountType==appAccountType.ADMIN">#</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let order of orders">
+                                    <th scope="row">{{order!.id}}</th>
+                                    <td><a [routerLink]="['/product/order/details',order!.id]" class="link">{{order!.transactionId.substr(0,12)}}...</a></td>
+                                    <td>{{order!.paymentReferenceId!=null?order!.paymentReferenceId:'No Payment'}}</td>
+                                    <td>{{order!.paymentOption}}</td>
+                                    <td>{{order!.totalAmount}}</td>
+                                    <td>{{order!.buyerName}}</td>
+                                    <td>{{order!.buyerMobileNumber}}</td>
+                                    <td>{{order!.alternativeNumber}}</td>
+                                    <td>{{order!.createdDate}}</td>
+                                    <td *ngIf="authenticatedUser.accountType==appAccountType.ADMIN">
+                                        <select class="btn btn-lenos btn-dynamic btn-round {{order.status}}"
+                                            (change)="changeOrderStatus($event,order)">
+                                            <ng-container *ngFor="let status of statusActions">
+                                                <option *ngIf="order.status==status && status=='PV'" selected
+                                                    value="{{status}}">
+                                                    Pending Confirmation
+                                                </option>
+                                                <option *ngIf="order.status==status && status=='PP'" selected
+                                                    value="{{status}}">
+                                                    Pending Payment
+                                                </option>
+                                                <option *ngIf="order.status==status && status=='PC'" selected
+                                                    value="{{status}}">
+                                                    Payment Confirmed
+                                                </option>
+                                                <option *ngIf="order.status==status && status=='OC'" selected value="{{status}}">
+                                                    Order Confirmed
+                                                </option>
+                                                <option *ngIf="order.status==status && status=='DP'" selected
+                                                    value="{{status}}">
+                                                    Delivery Progress
+                                                </option>
+                                                <option *ngIf="order.status==status && status=='DV'" selected
+                                                    value="{{status}}">
+                                                    Delivered
+                                                </option>
+                                                <option *ngIf="order.status==status && status=='RJ'" selected
+                                                    value="{{status}}">
+                                                    Rejected
+                                                </option>
+                                                <option value="{{status}}" *ngIf="status=='PV'">Pending Confirmation
+                                                </option>
+                                                <option value="{{status}}" *ngIf="status=='PP'">Pending Payment</option>
+                                                <option value="{{status}}" *ngIf="status=='PC'">Payment Confirmed
+                                                </option>
+                                                <option value="{{status}}" *ngIf="status=='OC'">Order Confirmed
+                                                </option>
+                                                <option value="{{status}}" *ngIf="status=='DP'">Delivery Progress
+                                                </option>
+                                                <option value="{{status}}" *ngIf="status=='DV'"> Delivered</option>
+                                                <option value="{{status}}" *ngIf="status=='RJ'">Rejected</option>
+
+                                            </ng-container>
+                                        </select>
+                                        <button type="button" class="btn btn-lenos btn-dynamic btn-round"
+                                            (click)="deleteOrder(order)">
+                                            <i class="fa fa-times" style="font-size: 20px;"></i>
+                                        </button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                    </ng-container>
+                    <ng-container *ngIf="orders==null && !isLoading">
+                        <div class="errorWrapper">
+                            No Order Available
+                        </div>
+                    </ng-container>
+                </div>
+            </div>
+            <app-pagination *ngIf="authenticatedUser.accountType==appAccountType.ADMIN" [change]="changePage" [currentPage]="this.currentPage" [totalPages]="this.totalPages" [self]="this">
+            </app-pagination>
+        </div>
+    </div>
+</div>
+<app-footer></app-footer>

@@ -1,0 +1,88 @@
+<app-sidebar></app-sidebar>
+<app-header></app-header>
+<div class="main-content">
+    <div id="page-wrapper">
+        <div class="main-page">
+            <div class="login-top left">
+                <h3>My Virtual Shop</h3>
+            </div>
+            <div class="tables" *ngIf="isLoading">
+                    <ng-container>
+                        <app-loader></app-loader>
+                    </ng-container>
+            </div>
+            <ng-container *ngIf="!isLoading && shop!=null">
+                <div class="widget-shadow">
+                    <div class="profile-top">
+                        <img class="logo" src="{{shop.logo!=null?'https://lenos.s3.amazonaws.com/pictures/'+shop.logo:'assets/images/nologo.png'}}"
+                            alt="">
+                        <h4>{{shop.name}}</h4>
+                        <h5>/{{shop.tag}}
+                        </h5>
+                    </div>
+                    <div class="profile-text">
+                        <div class="profile-row">
+                            <div class="profile-left">
+                                <span class="material-icons profile-icon">
+                                    contact_mail
+                                </span>
+                            </div>
+                            <div class="profile-right">
+                                <h4>{{shop.motto}}</h4>
+                                <p>Motto</p>
+                            </div>
+                            <div class="clearfix"> </div>
+                        </div>
+
+                        <div class="profile-row row-middle">
+                            <div class="profile-left">
+                                <span class="material-icons profile-icon">
+                                    business
+                                </span>
+                            </div>
+                            <div class="profile-right">
+                                <h4>{{shop.city}},Nigeria</h4>
+                                <p>City</p>
+                            </div>
+                            <div class="clearfix"> </div>
+                        </div>
+                        <div class="profile-row row-middle">
+                            <div class="profile-left">
+                                <span class="material-icons profile-icon">
+                                    location_on
+                                </span>
+                            </div>
+                            <div class="profile-right">
+                                <h4>{{shop.address!=null?shop.address:'Not Specified'}}</h4>
+                                <p>Shop Address</p>
+                            </div>
+                            <div class="clearfix"> </div>
+                        </div>
+
+                        <div class="profile-row">
+                            <div class="profile-right btn-profile-right">
+                                <button type="button" class="btn btn-lenos outline" [routerLink]="['/product/products']">
+                                    <span class="material-icons">shopping_cart</span>&nbsp; Manage Products
+                                </button>
+                                <!-- <button type="button" class="btn btn-lenos native" (click)="editShop();">
+                                    <span class="material-icons">border_color</span>&nbsp; Edit Shop
+                                </button> -->
+                            </div>
+                            <div class="clearfix"> </div>
+                        </div>
+                    </div>
+                    <div class="profile-btm"></div>
+                </div>
+            </ng-container>
+            <ng-container *ngIf="shop==null && !isLoading">
+                <div class="errorWrapper widget card">
+                    <p>Oops! Seams you don't have Shop yet</p>
+                    <button type="button" class="btn btn-lenos native" (click)="addShop();">
+                        <i class="fa fa-pencil"></i> Create Shop</button>
+                </div>
+            </ng-container>
+
+        </div>
+    </div>
+</div>
+<app-footer></app-footer>

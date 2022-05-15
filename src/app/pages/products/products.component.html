@@ -1,0 +1,114 @@
+<app-sidebar></app-sidebar>
+<app-header></app-header>
+<div class="main-content">
+    <div id="page-wrapper">
+        <div class="main-page">
+            <button type="button" [routerLink]="['/product/add']" class="btn btn-lenos btn-dynamic btn-round">
+                <i class="fa fa-plus" style="font-size: 20px;"></i> Add New Product
+            </button>
+            <div class="login-top left">
+                <h3>Products »</h3>
+            </div>
+            <div class="tables">
+                <div class="bs-example widget-shadow" data-example-id="hoverable-table">
+                    <ng-container *ngIf="isLoading">
+                        <app-loader></app-loader>
+                    </ng-container>
+                    <ng-container *ngIf="products!=null && !isLoading">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Thumbnail</th>
+                                    <th>Name</th>
+                                    <th>Category Name</th>
+                                    <th>Price</th>
+                                    <th>Created Date</th>
+                                    <th>#</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let product of products">
+                                    <ng-container>
+                                        <th scope="row">1</th>
+                                        <td [routerLink]="['/product/preview',product!.id]">
+                                            <img class="img img-responsive product-image" (error)="error($event);"
+                                                src="https://lenos.s3.amazonaws.com/pictures/{{product.thumbnail}}" />
+                                        </td>
+                                        <td [routerLink]="['/product/preview',product!.id]">
+                                            {{product!.name | slice:0:20}}..</td>
+                                        <td>{{product!.categoryName}}</td>
+                                        <td>{{product!.price}}</td>
+                                        <td>{{product!.createdDate}}</td>
+                                        <td>
+                                            <div class="controls row">
+
+                                                <div class="col-md-4" *ngIf="product.status!='PV'">
+                                                    <select
+                                                        class="btn btn-lenos btn-dynamic btn-round {{product.status}}"
+                                                        (change)="changeProductStatus($event,product)">
+                                                        <ng-container *ngIf="product.status=='AC'">
+                                                            <option value="OS">
+                                                                Out of Stock</option>
+                                                            <option selected value="AC">
+                                                                Available
+                                                            </option>
+                                                        </ng-container>
+                                                        <ng-container *ngIf="product.status=='OS'">
+                                                            <option value="OS" selected>
+                                                                Out of Stock</option>
+                                                            <option value="AC">
+                                                                Available
+                                                            </option>
+                                                        </ng-container>
+
+                                                    </select>
+                                                </div>
+                                                <div class="col-md-4" *ngIf="product.vendorId!=authenticatedUser.id">
+                                                    <ng-container>
+                                                        <label class="switch" *ngIf="product!.status=='AC'">
+                                                            <input type="checkbox" checked="true"
+                                                                (change)="activate($event,product)">
+                                                            <span class="slider round"></span>
+                                                        </label>
+                                                        <label class="switch" *ngIf="product!.status!='AC'">
+                                                            <input type="checkbox" (change)="activate($event,product)">
+                                                            <span class="slider round"></span>
+                                                        </label>
+                                                    </ng-container>
+                                                </div>
+
+                                                <div class="col-md-4">
+                                                    <button type="button" class="btn btn-round"
+                                                        (click)="deleteProduct(product)">
+                                                        <i class="fa fa-times" style="font-size: 20px;"></i>
+                                                    </button>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <button type="button" [routerLink]="['/product/edit',product.id]"
+                                                        class="btn btn-round">
+                                                        <i class="fa fa-pencil" style="font-size: 20px;"></i>
+                                                    </button>
+                                                </div>
+
+                                            </div>
+                                        </td>
+                                    </ng-container>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </ng-container>
+                    <ng-container *ngIf="products==null && !isLoading">
+                        <div class="errorWrapper">
+                            No Product Available
+                        </div>
+                    </ng-container>
+                </div>
+            </div>
+            <app-pagination *ngIf="products!=null" [self]="this"
+                [change]="changePage" [currentPage]="this.currentPage" [totalPages]="this.totalPages">
+            </app-pagination>
+        </div>
+    </div>
+</div>
+<app-footer></app-footer>

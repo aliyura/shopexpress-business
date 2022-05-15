@@ -1,0 +1,73 @@
+<app-sidebar></app-sidebar>
+<app-header></app-header>
+<div class="main-content">
+    <div id="page-wrapper">
+        <div class="main-page">
+        <div class="login-top left">
+            <h3>Voucher Cards »</h3>
+        </div>
+            <div class="tables">
+                <div class="bs-example widget-shadow" data-example-id="hoverable-table">
+                    <ng-container *ngIf="isLoading">
+                        <app-loader></app-loader>
+                    </ng-container>
+                    <ng-container *ngIf="cards!=null && !isLoading">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Owner</th>
+                                    <th>Serial</th>
+                                    <th>Rate</th>
+                                    <th>Anount</th>
+                                    <th>Spent</th>
+                                    <th>Outstanding</th>
+                                    <th>Pin</th>
+                                    <th>Created Date</th>
+                                    <th>#</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let card of cards">
+                                    <th scope="row">{{card!.id}}</th>
+                                    <td>{{card!.ownerId}}</td>
+                                    <td>{{card!.serialNumber}}</td>
+                                    <td>{{card!.rate}}</td>
+                                    <td>{{card!.amount}}</td>
+                                    <td>{{card!.spentAmount}}</td>
+                                    <td>{{card!.outstanding}}</td>
+                                    <td>{{card!.pin!=null?card!.pin:"Not Set"}}</td>
+                                    <td>{{card!.createdDate}}</td>
+                                    <td>
+                                        <button type="button" class="btn btn-lenos btn-dynamic btn-round"
+                                            (click)="deleteCard(card)">
+                                            <i class="fa fa-times" style="font-size: 20px;"></i>
+                                        </button>
+                                        &nbsp;
+                                        <label class="switch btn-round" *ngIf="card!.status=='AC'">
+                                            <input type="checkbox" checked="true" (change)="changeCardStatus($event,card)">
+                                            <span class="slider round"></span>
+                                        </label>
+                                        <label class="switch btn-round" *ngIf="card!.status!='AC'">
+                                            <input type="checkbox" (change)="changeCardStatus($event,card)">
+                                            <span class="slider round"></span>
+                                        </label>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <app-pagination [change]="changePage"
+                            [currentPage]="this.currentPage" [totalPages]="this.totalPages">
+                        </app-pagination>
+                    </ng-container>
+                    <ng-container *ngIf="cards==null && !isLoading">
+                        <div class="errorWrapper">
+                            No Voucher Available
+                        </div>
+                    </ng-container>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<app-footer></app-footer>

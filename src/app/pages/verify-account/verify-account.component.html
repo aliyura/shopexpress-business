@@ -1,0 +1,34 @@
+<app-top></app-top>
+<div class="main-page login-page">
+    <div class="login-top">
+        <h3>Verify your Account »</h3>
+        <p> We have sent an OTP to <strong>{{user.mobile}}</strong>, enter the OTP below</p>
+    </div>
+    <div class="widget-shadow input-container">
+        <div class="login-body">
+            <form name="form">
+                <div class="input">
+                   <input type="text" class="tf-lenos" name="username"[value]="user.mobile" disabled="true" readonly="true" placeholder="Enter your email or mobile number" required="true" (keyup)="form.validate($event)">
+                </div>
+                <div class="input">
+                   <input type="number" class="rf-lenos" name="otp" maxlength="6"  placeholder="OTP" required="true" (keyup)="form.validate($event)">
+                </div>
+                <input type="button" class="btn-lenos"  value="Continue" (click)="verifyAccount();">
+                <div class="forgot-grid">
+                    <div class="clearfix"> </div>
+                </div>
+            </form>
+
+            <div class="forgot-grid">
+                 <label>Didn't receve the OTP  yet?</label> <a class="link" (click)="resendOTP()"> Resend</a>
+                <div class="clearfix"> </div>
+            </div>
+        </div>
+        
+    </div>
+    <div class="forgot-grid">
+         Already Activated? <a [routerLink]="['/login']" class="link">Login Now</a>
+        <div class="clearfix"> </div>
+    </div>
+</div>
+<app-footer></app-footer>

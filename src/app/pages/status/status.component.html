@@ -1,0 +1,18 @@
+<app-sidebar></app-sidebar>
+<app-header></app-header>
+<section class="container">
+    <ng-container>
+        <div class="errorWrapper">
+            <span *ngIf="status==0" class="material-icons error">
+                dangerous
+            </span>
+            <span *ngIf="status==1" class="material-icons success">
+            check_circle
+            </span>
+            <h3>{{message}}</h3>
+            <button *ngIf="status==0" [routerLink]="[redirect]" class="btn btn-lenos" >{{redirectName}}</button>
+            <button *ngIf="status==1"  [routerLink]="[redirect]" class="btn btn-lenos">{{redirectName}}</button>
+        </div>
+    </ng-container>
+</section>
+<app-footer></app-footer>

@@ -1,0 +1,11 @@
+.sign-up2 {
+    width: 62%;
+}
+.textarea-large{
+    width: 82%;
+}
+@media(max-width:800px){
+    .textarea-large{
+        width: 100%;
+    }
+}

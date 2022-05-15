@@ -1,0 +1,10 @@
+<nav aria-label="..." *ngIf="totalPages">
+
+  <select class="tf-lenos pagination-option" (change)="changeI(self,$event)">
+    <ng-container *ngFor="let item of app.arrayOf(totalPages);let idx=index;">
+      <option class="page-item">
+        {{item}}
+      </option>
+    </ng-container>
+  </select>
+</nav>

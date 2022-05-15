@@ -1,0 +1,169 @@
+<app-sidebar></app-sidebar>
+<app-header></app-header>
+<div class="main-content">
+  <div id="page-wrapper">
+    <div class="main-page">
+      <div class="login-top left">
+        <h3>Order Details»</h3>
+      </div>
+
+      <ng-container *ngIf="isOderLoading">
+
+        <div class="tables">
+          <div class="bs-example widget-shadow" data-example-id="hoverable-table">
+            <app-loader></app-loader>
+          </div>
+        </div>
+      </ng-container>
+      <ng-container class="container" *ngIf="order!=null && !isOderLoading">
+        <div class="content row">
+          <div class="col-md-8 main-information">
+            <div class="order-information">
+              <div class="login-top left">
+                <h3>Order Information »</h3>
+              </div>
+              <div class="row">
+                <div class="col-md-6">
+
+                  <ul class="ul">
+                    <li>
+                      <h2>Order Refrence Number</h2>
+                      <p>{{order!.orderReferenceId}}</p>
+                    </li>
+                    <li>
+                      <h2>Payment Reference</h2>
+                      <p>{{order!.paymentReferenceId}}</p>
+                    </li>
+                    <li>
+                      <h2>Payment Option</h2>
+                      <p>{{order!.paymentOption}}</p>
+                    </li>
+                    <li>
+                      <h2>Transaction Amount</h2>
+                      <p>{{order.totalAmount}}</p>
+                    </li>
+                    <li>
+                      <h2>Order Note</h2>
+                      <p>{{order!.note?order!.note:'None'}}</p>
+                    </li>
+                  </ul>
+                </div>
+                <div class="col-md-6">
+                  <ul class="ul">
+                    <li>
+                      <h2>Customer Name</h2>
+                      <h3><strong>{{order!.buyerName}}</strong></h3>
+                    </li>
+                    <li>
+                      <h2>Contact Number</h2>
+                      <p>{{order!.buyerMobileNumber}}</p>
+                    </li>
+                    <li>
+                      <h2>Alternative Number</h2>
+                      <p>{{order!.alternativeNumber}}</p>
+                    </li>
+
+                    <li>
+                      <h2>Placed Date</h2>
+                      <p>{{order!.createdDate}}</p>
+                    </li>
+
+                    <li>
+                      <h2>Status</h2>
+                      <p>{{order!.status}}</p>
+                    </li>
+
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4 shipping-address">
+            <div class="login-top left">
+              <h3>Shipping Information »</h3>
+            </div>
+            <section class="container">
+              <ul class="ul">
+                <li>
+                  <h2>
+                    <span class="material-icons">
+                      location_city
+                    </span>City
+                  </h2>
+                  <p>{{order.locationCode}}, Nigeria</p>
+                </li>
+                <li>
+                  <h2>
+                    <span class="material-icons">
+                      home
+                    </span>Address
+                  </h2>
+                  <p>{{order!.address}}</p>
+                </li>
+
+              </ul>
+            </section>
+          </div>
+        </div>
+        <div class="content-list">
+          <div class="login-top left">
+            <h3>Products »</h3>
+          </div>
+          <ng-container *ngIf="isOrderDetailsLoading">
+
+            <div class="tables">
+              <div class="bs-example widget-shadow" data-example-id="hoverable-table">
+                <app-loader></app-loader>
+              </div>
+            </div>
+          </ng-container>
+          <ng-container *ngIf="orderDetails!=null && !isOrderDetailsLoading">
+
+            <div class="card row" *ngFor="let ordeDetail of orderDetails">
+
+              <div class="product-image">
+                <a href="https://lenos.com.ng/product-details/{{ordeDetail.product.id}}">
+                  <img class="img img-responsive"
+                    src="https://lenos.s3.amazonaws.com/pictures/{{ordeDetail.product.thumbnail}}"
+                    onerror="error(this)" />
+                </a>
+              </div>
+              <div class="product-data row">
+                <div class="col-md-4">
+                  <h4>Product Name</h4>
+                  <p>{{ordeDetail.product.name}}</p>
+                  <h4>Quantity</h4>
+                  <p>{{ordeDetail.details.quantity}}</p>
+                </div>
+                <div class="col-md-4">
+                  <h4>Seller Name</h4>
+                  <p>{{ordeDetail.details.sellerName}}</p>
+                  <h4>Seller Contact</h4>
+                  <p>{{ordeDetail.details.sellerContact}}</p>
+                </div>
+                <div class="col-md-4">
+                  <h4>Price</h4>
+                  <p>{{app.toMoney(ordeDetail.details.price)}}</p>
+                  <h4>Color</h4>
+                  <p>{{ordeDetail.details.color}}</p>
+
+                </div>
+              </div>
+            </div>
+          </ng-container>
+          <ng-container *ngIf="orderDetails==null && !isOrderDetailsLoading">
+            <div class="errorWrapper card">
+              No Product Found
+            </div>
+          </ng-container>
+        </div>
+      </ng-container>
+      <ng-container *ngIf="order==null && !isOderLoading">
+        <div class="errorWrapper widget card">
+          Order not Found
+        </div>
+      </ng-container>
+    </div>
+  </div>
+</div>
+<app-footer></app-footer>

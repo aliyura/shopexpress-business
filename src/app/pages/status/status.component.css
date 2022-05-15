@@ -1,0 +1,16 @@
+.errorWrapper{
+    margin-top: 33%;
+    margin: 50% auto;
+}
+.errorWrapper .material-icons.error{
+    font-size: 100px;
+    padding: 10px;
+}
+.errorWrapper .material-icons.success{
+    font-size: 100px;
+    padding: 10px;
+}
+.errorWrapper .btn-lenos{
+    margin: 0;
+    margin-top: 20px;
+}

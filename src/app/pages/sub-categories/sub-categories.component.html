@@ -1,0 +1,66 @@
+<app-sidebar></app-sidebar>
+<app-header></app-header>
+<div class="main-content">
+    <div id="page-wrapper">
+        <div class="main-page">
+            <button type="button" (click)="addSubCategory();"  class="btn btn-lenos btn-dynamic btn-round">
+                <i class="fa fa-plus" style="font-size: 20px;"></i> Add Sub Category
+            </button>
+            <div class="login-top left">
+                <h3>Sub Categories »</h3>
+            </div>
+            <div class="tables">
+                <div class="bs-example widget-shadow" data-example-id="hoverable-table">
+                    <h4>Categories</h4>
+                    <ng-container *ngIf="isLoading">
+                        <app-loader></app-loader>
+                    </ng-container>
+                    <ng-container *ngIf="categories!=null && !isLoading">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Category</th>
+                                    <th>Name</th>
+                                    <th>Created Date</th>
+                                    <th>#</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let category of categories">
+                                    <ng-container *ngIf="category!=null">
+                                        <th scope="row">1</th>
+                                        <td>{{category!.categoryId}}</td>
+                                        <td>{{category!.name}}</td>
+                                        <td>{{category!.createdDate}}</td>
+                                        <td>
+                                            <div class="controls row">
+                                                <div class="col-md-6">
+                                                    <button type="button" class="btn btn-round" 
+                                                        (click)="deleteSubCategory(category)">
+                                                        <i class="fa fa-times" style="font-size: 20px;"></i>
+                                                    </button>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <button type="button" (click)="editSubCategory(category)" class="btn btn-round">
+                                                        <i class="fa fa-pencil" style="font-size: 20px;"></i>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </ng-container>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </ng-container>
+                    <ng-container *ngIf="categories==null && !isLoading">
+                        <div class="errorWrapper">
+                            No Category Available
+                        </div>
+                    </ng-container>
+                </div>
+            </div>
+        </div>
+   </div>
+</div>
+<app-footer></app-footer>

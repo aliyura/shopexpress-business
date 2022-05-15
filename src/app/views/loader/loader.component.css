@@ -1,0 +1,17 @@
+.loader {
+  width: 100%;
+  height: auto;
+  margin: 0 auto;
+  text-align: center;
+  vertical-align: middle;
+}
+.loader img{
+  width: 150px;
+  margin-top: -2em;
+}
+@media(max-width:800px){
+  .loader {
+    margin:  40% auto;
+  }
+}
+

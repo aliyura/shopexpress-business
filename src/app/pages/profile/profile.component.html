@@ -1,0 +1,73 @@
+<app-sidebar></app-sidebar>
+<app-header></app-header>
+<div class="main-content">
+    <div id="page-wrapper">
+        <div class="main-page">
+            <div class="widget-shadow" *ngIf="isAuthenticated">
+                <div class="profile-top">
+                    <img class="logo" src="{{currentUser.dp!=null?'https://lenos.s3.amazonaws.com/pictures/'+currentUser.dp:'assets/images/avatar.png'}}" alt="">
+                    <h4>{{currentUser.name}}</h4>
+                    <h5>{{currentUser.rcNumber!=null?currentUser.rcNumber:'No CAC registration'|uppercase}}
+                    </h5>
+                </div>
+                <div class="profile-text">
+                    <div class="profile-row">
+                        <div class="profile-left">
+                            <i class="fa fa-envelope profile-icon"></i>
+                        </div>
+                        <div class="profile-right">
+                            <h4>{{currentUser.email}}</h4>
+                            <p>Email</p>
+                        </div>
+                        <div class="clearfix"> </div>
+                    </div>
+                    <div class="profile-row row-middle">
+                        <div class="profile-left">
+                            <i class="fa fa-mobile profile-icon"></i>
+                        </div>
+                        <div class="profile-right">
+                            <h4>{{currentUser.mobile}}</h4>
+                            <p>Contact Number</p>
+                        </div>
+                        <div class="clearfix"> </div>
+                    </div>
+                    <div class="profile-row row-middle">
+                        <div class="profile-left">
+                            <span class="material-icons profile-icon">
+                                business
+                            </span>
+                        </div>
+                        <div class="profile-right">
+                            <h4>{{currentUser.city}},Nigeria</h4>
+                            <p>City</p>
+                        </div>
+                        <div class="clearfix"> </div>
+                    </div>
+                    <div class="profile-row row-middle">
+                        <div class="profile-left">
+                            <span class="material-icons profile-icon">
+                                location_on
+                            </span>
+                        </div>
+                        <div class="profile-right">
+                            <h4>{{currentUser.address!=null?currentUser.address:'Not Specified'}}</h4>
+                            <p>Shop Address</p>
+                        </div>
+                        <div class="clearfix"> </div>
+                    </div>
+
+                    <div class="profile-row">
+                        <div class="profile-right btn-profile-right">
+                            <button type="button" class="btn btn-lenos native" (click)="editProfile();">
+                               <span class="material-icons">border_color</span>&nbsp; Edit Profile
+                            </button>
+                        </div>
+                        <div class="clearfix"> </div>
+                    </div>
+                </div>
+                <div class="profile-btm"></div>
+            </div>
+        </div>
+    </div>
+</div>
+<app-footer></app-footer>

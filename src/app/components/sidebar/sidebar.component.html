@@ -1,0 +1,236 @@
+<ng-container *ngIf="authenticatedUser.accountType==appAccountType.ADMIN">
+  <div class="sidebar" id="sidebar">
+    <div class="navbar-collapse">
+      <nav class="drawer">
+        <span class="fa fa-times close-trigger" (click)="closeDrawer()"></span>
+        <ul class="nav" id="side-menu">
+          <li>
+            <a (click)="closeDrawer()" href="/" class="active"><i class="fa fa-home nav_icon"></i>Dashboard</a>
+          </li>
+          <li>
+            <a (click)="closeDrawer()" [routerLink]="['/buyers']"><i class="fa fa-user nav_icon"></i>Buyers <span
+                class="nav-badge-btm">{{counts!=null?counts!.buyers:0}}</span></a>
+          </li>
+          <li>
+            <a (click)="closeDrawer()" [routerLink]="['/businesses']"><i class="fa fa-users nav_icon"></i>Businesses
+              <span class="nav-badge-btm">{{counts!=null?counts!.sellers:0}}</span></a>
+          </li>
+
+          <li>
+            <a href="javascript:void(0);"><i class="material-icons nav_icon">paid</i> Manage Orders
+              <span class="nav-badge-btm">{{counts!=null?counts!.orders:0}}</span> <span class="fa arrow"></span></a>
+            <ul class="nav nav-second-level collapse">
+              <li>
+                <a (click)="closeDrawer()" [routerLink]="['/product/orders']">All Orders</a>
+              </li>
+              <li>
+                <a (click)="closeDrawer()" [routerLink]="['/order/cities']">All Orders By City</a>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <a href="javascript:void(0);"><i class="fa fa-th-large nav_icon"></i>Manage Categories <span
+                class="fa arrow"></span></a>
+            <ul class="nav nav-second-level collapse">
+              <li>
+                <a [routerLink]="['#']" (click)="closeDrawer();addCategory();">Add new Category</a>
+              </li>
+              <li>
+                <a (click)="closeDrawer()" [routerLink]="['/product/categories']">All Categories</a>
+              </li>
+
+            </ul>
+          </li>
+          <li>
+            <a href="javascript:void(0);"><i class="fa fa-envelope-o nav_icon"></i>Manage Reviews <span
+                class="nav-badge-btm">{{counts!=null?counts!.reviews:0}}</span> <span class="fa arrow"></span></a>
+            <ul class="nav nav-second-level collapse">
+              <li>
+                <a (click)="closeDrawer()" [routerLink]="['/reviews']">New</a>
+              </li>
+              <li>
+                <a (click)="closeDrawer()" [routerLink]="['/reviews']">View All</a>
+              </li>
+            </ul>
+          </li>
+
+          <li>
+            <a href="javascript:void(0);"><i class="fa fa-th-large nav_icon"></i>Manage Vouchers <span
+                class="fa arrow"></span></a>
+            <ul class="nav nav-second-level collapse">
+              <li>
+                <a (click)="closeDrawer()" [routerLink]="['/voucher/cards']">All Vouchers</a>
+              </li>
+
+            </ul>
+          </li>
+
+          <li>
+            <a href="javascript:void(0);"><i class="fa fa-shopping-cart nav_icon"></i>Manage
+              Products<span class="nav-badge-btm">{{counts!=null?counts!.products:0}}</span><span
+                class="fa arrow"></span></a>
+            <ul class="nav nav-second-level collapse">
+              <li>
+                <a (click)="closeDrawer()" [routerLink]="['/product/add']">Add new Product</a>
+              </li>
+              <li>
+                <a (click)="closeDrawer()" [routerLink]="['/product/products']">My Products</a>
+              </li>
+            </ul>
+            <!-- //nav-second-level -->
+          </li>
+
+
+          <li>
+            <a href="javascript:void(0);"><i class="fa fa-map-marker nav_icon"></i>Manage Locations
+              <span class="fa arrow"></span></a>
+            <ul class="nav nav-second-level collapse">
+              <li>
+                <a (click)="closeDrawer()" [routerLink]="['/locations']">View Locations</a>
+              </li>
+              <li>
+                <a (click)="closeDrawer()" [routerLink]="['/location/add']">Add New Location</a>
+              </li>
+            </ul>
+          </li>
+
+
+          <li>
+            <a href="javascript:void(0);"><i class="fa fa-file-text-o nav_icon"></i>Account<span
+                class="fa arrow"></span></a>
+            <ul class="nav nav-second-level collapse" *ngIf="!isAuthenticated">
+              <li>
+                <a (click)="closeDrawer()" [routerLink]="['/login']">Logout</a>
+              </li>
+              <li>
+                <a (click)="closeDrawer()" [routerLink]="['/signup']">SignUp</a>
+              </li>
+            </ul>
+            <ul class="nav nav-second-level collapse" *ngIf="isAuthenticated">
+              <li>
+                <a (click)="closeDrawer()" [routerLink]="['/profile']">Profile</a>
+                <a [routerLink]="['#']" (click)="closeDrawer();logout();">Logout</a>
+              </li>
+            </ul>
+            <!-- //nav-second-level -->
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+
+</ng-container>
+<ng-container *ngIf="authenticatedUser.accountType==appAccountType.BUSINESS">
+  <div class="sidebar" id="sidebar">
+    <div class="navbar-collapse">
+      <nav class="drawer">
+        <span class="fa fa-times close-trigger"></span>
+        <ul class="nav" id="side-menu">
+          <li>
+            <a href="/" class="active"><i class="fa fa-home nav_icon"></i>Dashboard</a>
+          </li>
+          <li>
+            <a href="javascript:void(0);"><i class="fa fa-envelope-o nav_icon"></i>Manage Reviews <span
+                class="nav-badge-btm">{{counts!=null?counts!.reviews:0}}</span> <span class="fa arrow"></span></a>
+            <ul class="nav nav-second-level collapse">
+              <li>
+                <a (click)="closeDrawer()" [routerLink]="['/reviews']">New</a>
+              </li>
+              <li>
+                <a (click)="closeDrawer()" [routerLink]="['/reviews']">View All</a>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <a href="javascript:void(0);"><i class="material-icons nav_icon">paid</i>Manage Orders
+              <span class="nav-badge-btm">{{counts!=null?counts!.orders:0}}</span> <span class="fa arrow"></span></a>
+            <ul class="nav nav-second-level collapse">
+              <li>
+                <a (click)="closeDrawer()" [routerLink]="['/product/orders']">New Orders</a>
+              </li>
+              <li>
+                <a (click)="closeDrawer()" [routerLink]="['/product/orders']">All Orders</a>
+              </li>
+            </ul>
+          </li>
+
+
+          <li>
+            <a href="javascript:void(0);"><i class="fa fa-shopping-cart nav_icon"></i>Manage
+              Products<span class="nav-badge-btm">{{counts!=null?counts!.products:0}}</span><span
+                class="fa arrow"></span></a>
+            <ul class="nav nav-second-level collapse">
+              <li>
+                <a (click)="closeDrawer()" [routerLink]="['/product/add']">Add new Product</a>
+              </li>
+              <li>
+                <a (click)="closeDrawer()" [routerLink]="['/product/products']">My Products</a>
+              </li>
+            </ul>
+            <!-- //nav-second-level -->
+          </li>
+
+          <li>
+            <a href="javascript:void(0);"><i class="fa fa-plane nav_icon"></i>Manage Air &
+              Shipping<span class="nav-badge-btm"></span><span class="fa arrow"></span></a>
+            <ul class="nav nav-second-level collapse">
+              <li>
+                <a (click)="closeDrawer()" [routerLink]="['']">Create Shipping Request</a>
+              </li>
+              <li>
+                <a (click)="closeDrawer()" [routerLink]="['']">My Shipping Requests</a>
+              </li>
+            </ul>
+            <!-- //nav-second-level -->
+          </li>
+
+          <li>
+            <a href="javascript:void(0);"><i class="fa fa-shopping-cart nav_icon"></i>Manage
+              Abroad Purchases<span class="nav-badge-btm"></span><span class="fa arrow"></span></a>
+            <ul class="nav nav-second-level collapse">
+              <li>
+                <a (click)="closeDrawer()" [routerLink]="['']">Create Purchase Request</a>
+              </li>
+              <li>
+                <a (click)="closeDrawer()" [routerLink]="['']">My Purchase Requests</a>
+              </li>
+            </ul>
+            <!-- //nav-second-level -->
+          </li>
+
+          <li>
+            <a href="javascript:void(0);"><i class="fa fa-map-marker nav_icon"></i>Manage Locations
+              <span class="fa arrow"></span></a>
+            <ul class="nav nav-second-level collapse">
+              <li>
+                <a (click)="closeDrawer()" [routerLink]="['/locations']">View Locations</a>
+              </li>
+            </ul>
+          </li>
+
+
+          <li>
+            <a href="javascript:void(0);"><i class="fa fa-file-text-o nav_icon"></i>Account<span
+                class="fa arrow"></span></a>
+            <ul class="nav nav-second-level collapse" *ngIf="!isAuthenticated">
+              <li>
+                <a (click)="closeDrawer()" [routerLink]="['/login']">Login</a>
+              </li>
+              <li>
+                <a (click)="closeDrawer()" [routerLink]="['/signup']">SignUp</a>
+              </li>
+            </ul>
+            <ul class="nav nav-second-level collapse" *ngIf="isAuthenticated">
+              <li>
+                <a (click)="closeDrawer()" [routerLink]="['/shop']">Manage Shop</a>
+                <a (click)="closeDrawer()" [routerLink]="['/profile']">My Profile</a>
+                <a (click)="closeDrawer()" [routerLink]="['#']" (click)="logout();">Logout</a>
+              </li>
+            </ul>
+            <!-- //nav-second-level -->
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+</ng-container>

@@ -1,0 +1,53 @@
+.logo,
+.bar {
+  display: inline-block;
+}
+.bar {
+  position: absolute;
+  left: 0;
+  padding: 20px;
+}
+.bar button {
+  width: 60px;
+  outline: none;
+  border: none;
+  background: #fff;
+  font-size: 30px;
+}
+.logo {
+  width: 40%;
+  height: 75px;
+  padding: 5px;
+  margin-left: 100px;
+}
+.logo .logo-img {
+  width: 90%;
+  vertical-align: middle;
+  text-align: center;
+}
+.avatar {
+  width: 55px;
+  height: 55px;
+  border-radius: 60px;
+}
+@media (max-width: 800px) {
+  .logo {
+    width: 100%;
+    height: 72px;
+    margin-top: -15px;
+    padding-top: 5px;
+  }
+  .logo .logo-img {
+    width: 55%;
+    vertical-align: middle;
+    text-align: left;
+    margin-top: 5px;
+    margin-left: -85px;
+  }
+}
+
+@media (max-width: 320px) {
+  .profile_img span.prfil-img img {
+    width: auto !important;
+  }
+}

@@ -1,0 +1,42 @@
+<h1 mat-dialog-title>{{title}}
+    <span class="material-icons close-icon" (click)="closeDialog()">
+        cancel_presentation
+    </span>
+</h1>
+<div mat-dialog-content>
+    <form name="form" enctype="multipart/form-data">
+        <div class="row">
+            <div class="sign-u col-md-12">
+                <div class="sign-up1">
+                    <h4> Shopname<strong class="star">*</strong> :</h4>
+                </div>
+                <div class="sign-up2">
+                    <input type="text" [value]="getFormatedShopName(auth.authenticatedUser.name)" class="tf-lenos" placeholder="Shopname e.g tahirinvestment" name="tag" required="true" (keyup)="form.validate($event); validateInput($event)">
+                </div>
+                <div class="clearfix"> </div>
+
+                <div class="sign-up1">
+                    <h4>Motto :</h4>
+                </div>
+                <div class="sign-up2">
+                    <input type="text" class="tf-lenos" placeholder="Motto e.g Shop now, Get now" name="motto" (keyup)="form.validate($event)">
+                </div>
+                <div class="clearfix"> </div>
+
+                <div class="sign-up1">
+                    <h4>Logo:</h4>
+                </div>
+                <div class="sign-up2">
+                    <input type="file" class="tf-lenos" name="logo" required="true" (change)="form.validate($event)">
+                </div>
+                <div class="clearfix"> </div>
+            </div>
+        </div>
+    </form>
+</div>
+<div class="group-button dialog-buttons" mat-dialog-actions>
+    <div class="sub_home text-right">
+        <button type="button" mat-button (click)="this.addShop()" class="btn btn-lenos native big">Create Shop</button>
+        <div class="clearfix"> </div>
+    </div>
+</div>

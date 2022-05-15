@@ -1,0 +1,7 @@
+.product-image{
+    width: 70px;
+    height: 50px;
+}
+.controls.row div{
+    width: auto !important;
+}

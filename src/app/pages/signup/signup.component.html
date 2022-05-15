@@ -1,0 +1,124 @@
+<app-top></app-top>
+<div class="main-page signup-page input-container">
+    <form name="form">
+        <div class="login-top">
+            <h3>Register your Business »</h3>
+        </div>
+        <div class="sign-up-row widget-shadow">
+            <h5>Business Information :</h5>
+            <div class="row">
+                <div class="sign-u col-md-6">
+                    <div class="sign-up1">
+                        <h4> RC Number<strong class="star">*</strong> :</h4>
+                    </div>
+                    <div class="sign-up2">
+                        <input type="text" class="tf-lenos" maxlength="12" name="rcNumber" required="true"
+                            (keyup)="form.validate($event)">
+                    </div>
+                    <div class="clearfix"> </div>
+                </div>
+                <div class="sign-u col-md-6">
+                    <div class="sign-up1">
+                        <h4>Business Name <strong class="star">*</strong> :</h4>
+                    </div>
+                    <div class="sign-up2">
+                        <input type="text" class="tf-lenos" name="name" required="true" (keyup)="form.validate($event)">
+                    </div>
+                    <div class="clearfix"> </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="sign-u col-md-6">
+                    <div class="sign-up1">
+                        <h4>Email Address <strong class="star">*</strong> :</h4>
+                    </div>
+                    <div class="sign-up2">
+                        <input type="email" class="tf-lenos" name="email" required="true"
+                            (keyup)="form.validate($event)">
+                    </div>
+                    <div class="clearfix"> </div>
+                </div>
+                <div class="sign-u col-md-6">
+                    <div class="sign-up1">
+                        <h4>Mobile Number <strong class="star">*</strong> :</h4>
+                    </div>
+                    <div class="sign-up2">
+                        <input type="tel" class="tf-lenos" name="mobile" maxlength="14" required="true"
+                            (keyup)="form.validate($event)">
+                    </div>
+                    <div class="clearfix"> </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="sign-u col-md-6">
+                    <div class="sign-up1">
+                        <h4>Country <strong class="star">*</strong> :</h4>
+                    </div>
+                    <div class="sign-up2">
+                        <input type="text" class="tf-lenos" name="country" value="Nigeria" disabled="true"
+                            readonly="true" required="true" (keyup)="form.validate($event)">
+                    </div>
+                    <div class="clearfix"> </div>
+                </div>
+                <div class="sign-u col-md-6">
+                    <div class="sign-up1">
+                        <h4>City <strong class="star">*</strong> :</h4>
+                    </div>
+                    <div class="sign-up2">
+                        <select class="tf-lenos" name="city" (change)="form.validate($event)" required="true">
+                            <option value="" selected>-- Choose State --</option>
+                            <option *ngFor="let loc of locations" [value]="loc.description">{{loc.description}}</option>
+                        </select>
+                    </div>
+                    <div class="clearfix"> </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="sign-u col-md-12">
+                    <div class="sign-up1">
+                        <h4>Shop Address <strong class="star">*</strong> :</h4>
+                    </div>
+                    <div class="sign-up2 textarea-large">
+                        <textarea class="tf-lenos" nam="address" name="address" required="true"
+                            (keyup)="form.validate($event)"></textarea>
+                    </div>
+                </div>
+            </div>
+            <br /><br />
+            <div class="mt-5">
+                <h6>Login Information :</h6>
+                <div class="sign-u">
+                    <div class="sign-up1">
+                        <h4>Password <strong class="star">*</strong> :</h4>
+                    </div>
+                    <div class="sign-up2">
+                        <input type="password" class="tf-lenos" name="password" required="true"
+                            (keyup)="form.validate($event)">
+                    </div>
+                    <div class="clearfix"> </div>
+                </div>
+                <div class="sign-u">
+                    <div class="sign-up1">
+                        <h4>Confirm Password <strong class="star">*</strong> :</h4>
+                    </div>
+                    <div class="sign-up2">
+                        <input type="password" class="tf-lenos" name="confirmPassword" required="true"
+                            (keyup)="form.validate($event)">
+                    </div>
+                </div>
+
+                <div class="clearfix"> </div>
+                <div class="sub_home text-right">
+                    <button type="button" class="btn btn-lenos" (click)="signUp()">Submit</button>
+                    <div class="clearfix"> </div>
+                </div>
+            </div>
+            <div class="forgot-grid">
+                Already have an Account? <a [routerLink]="['/login']" class="link">Login Now</a>
+                <div class="clearfix"> </div>
+            </div>
+        </div>
+    </form>
+</div>
+<app-footer></app-footer>

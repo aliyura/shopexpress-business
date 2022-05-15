@@ -1,0 +1,73 @@
+<app-sidebar></app-sidebar>
+<app-header></app-header>
+<div class="main-content">
+    <div id="page-wrapper">
+        <div class="main-page">
+            <button type="button" (click)="addCategory()" class="btn btn-lenos btn-dynamic btn-round">
+                <i class="fa fa-plus" style="font-size: 20px;"></i> Add Category
+            </button>
+            <div class="login-top">
+                <h3>Upload new Product »</h3>
+            </div>
+            <div class="tables">
+                <div class="bs-example widget-shadow" data-example-id="hoverable-table">
+                    <h4>Categories</h4>
+                    <ng-container *ngIf="isLoading">
+                        <app-loader></app-loader>
+                    </ng-container>
+                    <ng-container *ngIf="categories!=null">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Name</th>
+                                    <th>Type</th>
+                                    <th>Icon</th>
+                                    <th>Sub Categories</th>
+                                    <th>Created Date</th>
+                                    <th>#</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let categoryData of categories">
+                                    <ng-container *ngIf="categoryData.category!=null && !isLoading">
+                                        <th scope="row">1</th>
+                                        <td [routerLink]="['/product/sub-categories',categoryData.category!.id]">
+                                            {{categoryData.category!.name}}</td>
+                                        <td>{{categoryData.category!.type}}</td>
+                                        <td>{{categoryData.category.icon!=null?categoryData.category!.icon:"Not
+                                            Avaialble"}}</td>
+                                        <td>{{categoryData!.subCategories!!=null?categoryData!.subCategories!.length:'0'}}
+                                        </td>
+                                        <td>{{categoryData.category!.createdDate}}</td>
+                                        <td>
+                                            <div class="controls row">
+                                                <div class="col-md-6">
+                                                    <button type="button" class="btn btn-round"
+                                                        (click)="deleteCategory(categoryData.category)">
+                                                        <i class="fa fa-times" style="font-size: 20px;"></i>
+                                                    </button>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <button type="button" (click)="editCategory(categoryData!.category)" class="btn btn-round">
+                                                        <i class="fa fa-pencil" style="font-size: 20px;"></i>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </ng-container>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </ng-container>
+                    <ng-container *ngIf="categories==null && !isLoading">
+                        <div class="errorWrapper">
+                            No Category Available
+                        </div>
+                    </ng-container>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<app-footer></app-footer>

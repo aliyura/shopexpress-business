@@ -1,0 +1,265 @@
+@import "https://fonts.googleapis.com/icon?family=Material+Icons";
+@import "~ngx-toastr/toastr.css";
+
+body {
+  font-family: "Rubik", sans-serif;
+  font-size: 14px;
+  line-height: 26px;
+  color: #4c4c4c;
+  font-weight: normal;
+  overflow-x: hidden;
+}
+.WP,
+.CA,
+.OS,
+.PA,
+.PS {
+  background: goldenrod !important;
+  font-weight: bolder;
+  color: white;
+}
+.AC,
+.CO {
+  background: green !important;
+  font-weight: bolder;
+  color: white;
+}
+.DE,
+.IA,
+.RE {
+  background: red !important;
+  font-weight: bolder;
+  color: white;
+}
+.PE,
+.PC {
+  background: #a62589 !important;
+  font-weight: bolder;
+  color: white;
+}
+.green-snackbar {
+  color: #155724;
+  background-color: #7ac58c;
+  border-color: #c3e6cb;
+}
+.green-snackbar button {
+  background-color: #5bb971;
+  color: white;
+  border: none;
+}
+.red-snackbar {
+  color: #721c24;
+  background-color: #e27b83;
+  border-color: #e27b83;
+}
+.red-snackbar button {
+  background-color: #df7981;
+  color: white !important;
+  border: none;
+}
+.yellow-snackbar {
+  color: #856404;
+  background-color: #e6b516;
+  border-color: #ffeeba;
+}
+.yellow-snackbar button {
+  background-color: #dbad16;
+  color: white !important;
+  border: none;
+}
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+}
+.lenos-hide {
+  display: none !important;
+}
+.lenos-show {
+  display: block;
+}
+.lenos-overlay {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 100000;
+  background-color: transparent;
+  display: block;
+}
+.lenos-disabled {
+  opacity: 0.6 !important;
+}
+.lenos-spinner {
+  width: 100px;
+  margin: 10px auto;
+  text-align: center;
+}
+.disabled {
+  background: #e7e7e7 !important;
+  cursor: default;
+}
+
+/* Hide default HTML checkbox */
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+/* The slider */
+.switch .slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+}
+
+.switch .slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+}
+
+.switch input:checked + .slider {
+  background-color: #26d772;
+}
+
+.switch input:focus + .slider {
+  box-shadow: 0 0 1px #26d772;
+}
+
+.switch input:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+
+/* Rounded sliders */
+.switch .slider.round {
+  border-radius: 34px;
+}
+
+.switch .slider.round:before {
+  border-radius: 50%;
+}
+.main-content {
+  margin-left: 35px;
+}
+.errorWrapper {
+  width: 100%;
+  min-height: 100px;
+  padding: 15px;
+  vertical-align: middle;
+  text-align: center;
+}
+.cdk-global-overlay-wrapper {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  background-color: rgba(20, 20, 20, 0.048) !important;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+}
+.cdk-overlay-pane {
+  pointer-events: auto;
+  width: 60%;
+  position: static;
+  background: #fff;
+  box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.21);
+  -webkit-box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.21);
+  -moz-box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.21);
+  -o-box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.21);
+  margin-left: 35%;
+  margin-top: 100px;
+}
+
+.cdk-overlay-pane h1 {
+  margin: 0 0 20px;
+  display: block;
+  border-bottom: 1px solid rgb(156, 156, 156);
+  padding-bottom: 18px;
+}
+.mat-snack-bar-container {
+  transform-origin: center;
+  position: fixed;
+  right: 0;
+  top: 63px;
+}
+.dialog-buttons {
+  margin: 5px !important;
+  float: right;
+}
+.dialog-buttons button {
+  min-width: 180px;
+  text-align: center;
+  margin-right: 0.7em;
+  margin-top: 1em;
+  font-size: 16px;
+}
+.material-icons.close-icon {
+  float: right;
+  cursor: pointer;
+  font-size: 35px;
+}
+.controls {
+  margin-top: -8px;
+}
+.login-top h3 {
+  color: indianred !important;
+}
+.login-top.left {
+  text-align: left;
+}
+@media (max-width: 1024px) {
+  .main-content {
+    margin-left: 0 !important;
+  }
+}
+@media (max-width: 800px) {
+  .lenos-overlay {
+    background-color: rgb(0 0 0 / 20%);
+    display: none;
+  }
+  .mat-dialog-container {
+    max-height: 90%;
+  }
+  .cdk-overlay-pane {
+    min-width: 100%;
+    margin: 0;
+    margin-top: 33%;
+  }
+  .cdk-global-overlay-wrapper {
+    padding: 20px;
+  }
+  .stats-left h5 {
+    font-size: 12px;
+  }
+  .stats-left h4 {
+    font-size: 10px;
+  }
+  .sign-up2 {
+    width: 100% !important;
+  }
+  .btn-lenos {
+    min-width: 100%;
+    margin: auto;
+  }
+  .mat-dialog-content {
+    height: 250px;
+  }
+}

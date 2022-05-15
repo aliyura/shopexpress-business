@@ -1,0 +1,12 @@
+select,option{
+    color: #fff !important;
+}
+.PV,.PP{
+    background: rgb(235, 62, 62);
+}
+.PC{
+    background: goldenrod;
+}
+.DP,.DV{
+   background: #8BC34A;
+}

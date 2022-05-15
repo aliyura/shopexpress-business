@@ -1,0 +1,38 @@
+<h1 mat-dialog-title>{{title}}
+    <span class="material-icons close-icon" (click)="closeDialog()">
+        cancel_presentation
+    </span>
+</h1>
+<div mat-dialog-content>
+    <form name="form" enctype="multipart/form-data">
+        <div class="row">
+            <div class="sign-u">
+                <div class="sign-up1">
+                    <h4> Description<strong class="star">*</strong> :</h4>
+                </div>
+                <div class="sign-up2">
+                    <input type="text" [value]="existingLocation!.description" class="tf-lenos" name="description" required="true"
+                        (keyup)="form.validate($event)">
+                </div>
+                <div class="clearfix"> </div>
+            </div>
+            <div class="sign-u">
+                <div class="sign-up1">
+                    <h4>Delivery Fee <strong class="star">*</strong> :</h4>
+                </div>
+                <div class="sign-up2">
+                    <input type="number" class="tf-lenos" name="deliveryFee" [value]="existingLocation!.deliveryFee" required="true" (keyup)="form.validate($event)">  
+                </div>
+                <div class="clearfix"> </div>
+            </div>
+        </div>
+    </form>
+</div>
+<div class="group-button dialog-buttons" mat-dialog-actions>
+        <div class="sub_home text-right">
+            <button type="button" mat-button (click)="this.addCategory()" class="btn btn-lenos btn-round">Save</button>
+            <div class="clearfix"> </div>
+        </div>
+</div>
+
+
